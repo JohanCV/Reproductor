@@ -1,5 +1,6 @@
 package com.jcv.reproductor;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class Reprodcuccion extends AppCompatActivity {
 
+    Button btnMenu;
     Button play;
     Button stop;
     Button siguiente;
@@ -21,13 +23,13 @@ public class Reprodcuccion extends AppCompatActivity {
     ImageView album;
 
     List<Musica> playList = new ArrayList<Musica>();
-    List<MediaPlayer> media = new ArrayList<MediaPlayer>();
-    MediaPlayer mediaPlay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reprodcuccion);
 
+        btnMenu = findViewById(R.id.btnMenu);
         play = findViewById(R.id.btnPlay);
         stop = findViewById(R.id.btnStop);
         siguiente = findViewById(R.id.btnSiguiente);
@@ -35,17 +37,33 @@ public class Reprodcuccion extends AppCompatActivity {
         titulo = findViewById(R.id.txtViewTitulo);
         album = findViewById(R.id.imageView);
 
-
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ListaMusica.class);
+                startActivity(intent);
+            }
+        });
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reproducir();
             }
         });
+        siguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                siguiente();
+            }
+        });
     }
+
     public void cargarMusica(){
-        mediaPlay = MediaPlayer.create(this,R.raw.dreamingblue);
-        playList.add(new Musica(mediaPlay ,titulo, album));
+        playList.add(new Musica(MediaPlayer.create(this,R.raw.dreamingblue) ,titulo, album));
+        playList.add(new Musica(MediaPlayer.create(this,R.raw.skyskating) ,titulo, album));
+        playList.add(new Musica(MediaPlayer.create(this,R.raw.lamentgoldenlight) ,titulo, album));
+        playList.add(new Musica(MediaPlayer.create(this,R.raw.darktranquility) ,titulo, album));
+        playList.add(new Musica(MediaPlayer.create(this,R.raw.alwaysbemyunicorn) ,titulo,album));
     }
     public void reproducir(){
         cargarMusica();
@@ -66,4 +84,9 @@ public class Reprodcuccion extends AppCompatActivity {
     public void pausa(){
         playList.get(0).getMedia().pause();
     }
+    public void siguiente(){
+        playList.get(1).getMedia().start();
+
+    }
+
 }

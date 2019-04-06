@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Reproductor</string>
+    <string name="title_activity_lista_musica">ListaMusica</string>
 </resources>

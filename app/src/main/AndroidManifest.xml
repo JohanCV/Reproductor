@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Reprodcuccion">
+
+        </activity>
+        <activity
+            android:name=".ListaMusica"
+            android:label="@string/title_activity_lista_musica"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -19,6 +19,11 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.jcv.reproductor.Reprodcuccion" >
+        </activity>
+        <activity
+            android:name="com.jcv.reproductor.ListaMusica"
+            android:label="@string/title_activity_lista_musica"
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
