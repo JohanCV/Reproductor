@@ -382,6 +382,7 @@ color bright_foreground_material_light
 color button_material_dark
 color button_material_light
 color colorAccent
+color colorBlack
 color colorPrimary
 color colorPrimaryDark
 color dim_foreground_disabled_material_dark
@@ -628,6 +629,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable dj
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable notification_action_background
@@ -642,6 +644,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable tenor
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -678,6 +681,10 @@ id barrier
 id beginning
 id blocking
 id bottom
+id btnAnterior
+id btnPlay
+id btnSiguiente
+id btnStop
 id buttonPanel
 id center
 id center_horizontal
@@ -714,6 +721,7 @@ id icon
 id icon_group
 id ifRoom
 id image
+id imageView
 id info
 id invisible
 id italic
@@ -785,6 +793,7 @@ id titleDividerNoCustom
 id title_template
 id top
 id topPanel
+id txtViewTitulo
 id uniform
 id up
 id useLogo
@@ -837,6 +846,11 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
 mipmap ic_launcher_round
+raw alwaysbemyunicorn
+raw darktranquility
+raw dreamingblue
+raw lamentgoldenlight
+raw skyskating
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
