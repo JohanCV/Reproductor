@@ -5,14 +5,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Musica {
-    MediaPlayer media;
-    TextView titulo;
-    ImageView album;
+    private MediaPlayer media;
+    private int foto;
+    private String cancion;
+    private String grupo;
 
-    public Musica(MediaPlayer media, TextView titulo, ImageView album) {
+    public Musica(MediaPlayer media, int foto, String cancion, String grupo) {
         this.media = media;
-        this.titulo = titulo;
-        this.album = album;
+        this.foto = foto;
+        this.cancion = cancion;
+        this.grupo = grupo;
+    }
+
+    public Musica(int foto, String cancion, String grupo) {
+        this.foto = foto;
+        this.cancion = cancion;
+        this.grupo = grupo;
     }
 
     public MediaPlayer getMedia() {
@@ -23,19 +31,27 @@ public class Musica {
         this.media = media;
     }
 
-    public TextView getTitulo() {
-        return titulo;
+    public int getFoto() {
+        return foto;
     }
 
-    public void setTitulo(TextView titulo) {
-        this.titulo = titulo;
+    public void setFoto(int foto) {
+        this.foto = foto;
     }
 
-    public ImageView getAlbum() {
-        return album;
+    public String getCancion() {
+        return cancion;
     }
 
-    public void setAlbum(ImageView album) {
-        this.album = album;
+    public void setCancion(String cancion) {
+        this.cancion = cancion;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
 }
