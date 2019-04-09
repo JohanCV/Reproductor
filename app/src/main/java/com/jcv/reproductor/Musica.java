@@ -6,13 +6,15 @@ import android.widget.TextView;
 
 public class Musica {
     MediaPlayer media;
-    TextView titulo;
-    ImageView album;
+    String tituloCancion;
+    String grupoNombre;
+    int albumFoto;
 
-    public Musica(MediaPlayer media, TextView titulo, ImageView album) {
+    public Musica(MediaPlayer media, String tituloCancion, String grupoNombre, int albumFoto) {
         this.media = media;
-        this.titulo = titulo;
-        this.album = album;
+        this.tituloCancion = tituloCancion;
+        this.grupoNombre = grupoNombre;
+        this.albumFoto = albumFoto;
     }
 
     public MediaPlayer getMedia() {
@@ -23,19 +25,27 @@ public class Musica {
         this.media = media;
     }
 
-    public TextView getTitulo() {
-        return titulo;
+    public String getTituloCancion() {
+        return tituloCancion;
     }
 
-    public void setTitulo(TextView titulo) {
-        this.titulo = titulo;
+    public void setTituloCancion(String tituloCancion) {
+        this.tituloCancion = tituloCancion;
     }
 
-    public ImageView getAlbum() {
-        return album;
+    public String getGrupoNombre() {
+        return grupoNombre;
     }
 
-    public void setAlbum(ImageView album) {
-        this.album = album;
+    public void setGrupoNombre(String grupoNombre) {
+        this.grupoNombre = grupoNombre;
+    }
+
+    public int getAlbumFoto() {
+        return albumFoto;
+    }
+
+    public void setAlbumFoto(int albumFoto) {
+        this.albumFoto = albumFoto;
     }
 }
