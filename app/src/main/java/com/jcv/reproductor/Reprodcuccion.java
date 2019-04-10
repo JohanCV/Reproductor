@@ -95,7 +95,7 @@ public class Reprodcuccion extends AppCompatActivity {
     }
 
     public void reproducir(){
-
+        playList = (ArrayList<Musica>) getIntent().getSerializableExtra("objetoCancion");
         if (reproductor.isPlaying()){
             pausa();
             play.setBackgroundResource(android.R.drawable.ic_media_play);
@@ -103,6 +103,9 @@ public class Reprodcuccion extends AppCompatActivity {
             titulo.setText(playList.get(posicionCancion).getCancion());
 
         }else {
+            if (playList != null){
+
+            }
             reproductor.start();
             play.setBackgroundResource(android.R.drawable.ic_media_pause);
             album.setBackgroundResource(playList.get(posicionCancion).getFoto());

@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Inicio"
-    android:background="@color/colorBlueLight">
+    android:background="@color/colorBlueLight"
+    tools:context=".Inicio">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageViewEscuchando"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            app:srcCompat="@drawable/icons8escucharmica48"
-            android:layout_marginTop="200dp"/>
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icons8escucharmica48" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="64dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textViewBienvenido"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bienvenido"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"
+            android:layout_height="match_parent"
+            android:layout_marginTop="210dp"
+            android:baselineAligned="false"
             android:gravity="center"
-            android:layout_marginTop="300dp"/>
+            android:text="Bienvenido al MusicaTon"
+            android:textColor="@color/colorWhite"
+            android:textSize="42dp"
+            android:textStyle="normal" />
+
     </LinearLayout>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

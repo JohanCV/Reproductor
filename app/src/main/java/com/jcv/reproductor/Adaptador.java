@@ -43,7 +43,7 @@ public class Adaptador extends BaseAdapter {
         final Musica itemMusica = (Musica) getItem(posicion);
 
         view = LayoutInflater.from(contexto).inflate(R.layout.item_musica_seleccionada,null);
-        ImageView imgAlbum = (ImageView) view.findViewById(R.id.itemImgViewAlbum);
+        final ImageView imgAlbum = (ImageView) view.findViewById(R.id.itemImgViewAlbum);
         TextView txtCancion = (TextView) view.findViewById(R.id.itemTextViewCancion);
         TextView txtGrupo = (TextView) view.findViewById(R.id.itemTextViewGrupo);
         Button btnLike = (Button) view.findViewById(R.id.itemButtonMeGusta);
@@ -51,21 +51,27 @@ public class Adaptador extends BaseAdapter {
         imgAlbum.setImageResource(itemMusica.getFoto());
         txtCancion.setText(itemMusica.getCancion());
         txtGrupo.setText(itemMusica.getGrupo());
+/*
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(contexto, "TEXTOOO", Toast.LENGTH_SHORT).show();
                 MediaPlayer play = MediaPlayer.create(contexto,itemMusica.getMediaruta());
 
-                play.start();
+                if (play.isPlaying()){
+                    play.pause();
+
+                    play.start();
+                }else {
+                    play.start();
+                }
+                Toast.makeText(contexto, "Reproduciendo "+itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(contexto, "asadasd", Toast.LENGTH_SHORT).show();
-                MediaPlayer play = MediaPlayer.create(contexto,itemMusica.getMediaruta());
-                play.start();
+                Toast.makeText(contexto, "Agregaste la cancion a Mi Lista", Toast.LENGTH_SHORT).show();
+
             }
         });
         return view;
