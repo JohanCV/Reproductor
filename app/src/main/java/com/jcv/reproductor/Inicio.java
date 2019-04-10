@@ -37,6 +37,7 @@ public class Inicio extends AppCompatActivity {
                     e.printStackTrace();
                 }finally {
                     startActivity(intent);
+                    finish();
                 }
             }
         };
