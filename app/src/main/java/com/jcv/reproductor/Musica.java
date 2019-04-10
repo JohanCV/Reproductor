@@ -4,31 +4,27 @@ import android.media.MediaPlayer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Musica {
-    private MediaPlayer media;
+import java.io.Serializable;
+
+public class Musica implements Serializable {
+    private int mediaruta;
     private int foto;
     private String cancion;
     private String grupo;
 
-    public Musica(MediaPlayer media, int foto, String cancion, String grupo) {
-        this.media = media;
+    public Musica(int mediaruta, int foto, String cancion, String grupo) {
+        this.mediaruta = mediaruta;
         this.foto = foto;
         this.cancion = cancion;
         this.grupo = grupo;
     }
 
-    public Musica(int foto, String cancion, String grupo) {
-        this.foto = foto;
-        this.cancion = cancion;
-        this.grupo = grupo;
+    public int getMediaruta() {
+        return mediaruta;
     }
 
-    public MediaPlayer getMedia() {
-        return media;
-    }
-
-    public void setMedia(MediaPlayer media) {
-        this.media = media;
+    public void setMediaruta(int mediaruta) {
+        this.mediaruta = mediaruta;
     }
 
     public int getFoto() {

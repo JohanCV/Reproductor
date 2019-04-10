@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class Reprodcuccion extends AppCompatActivity {
     private int posicionCancion = 0;
 
     ArrayList<Musica> playList = new ArrayList<Musica>();
+    MediaPlayer reproductor;
+    int musica1 = R.raw.alwaysbemyunicorn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,7 @@ public class Reprodcuccion extends AppCompatActivity {
         titulo = findViewById(R.id.txtViewTitulo);
         album = findViewById(R.id.imageView);
         cargarMusica();
+        reproductor = MediaPlayer.create(getApplicationContext(), playList.get(posicionCancion).getMediaruta());
         eventos();
     }
 
@@ -44,8 +49,16 @@ public class Reprodcuccion extends AppCompatActivity {
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarMusica();
-                Intent intent = new Intent(getApplicationContext(),ListaMusica.class);
+
+                Intent intent = new Intent(Reprodcuccion.this,ListaMusica.class);
+                Bundle args = new Bundle();
+                String  name = playList.toString();
+                Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                args.putSerializable("ARRAYLIST",(Serializable)playList);
+                intent.putExtra("BUNDLE",args);
+                name = args.toString();
+                Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                //intent = serializableMetodo(intent);
                 startActivity(intent);
 
             }
@@ -70,25 +83,41 @@ public class Reprodcuccion extends AppCompatActivity {
         });
     }
 
-    public ArrayList<Musica> cargarMusica(){
+    public void cargarMusica(){
         //playList.add(new Musica(MediaPlayer.create(this,R.raw.skyskating) ,R.drawable.dj,"asad","assa"));
         //playList.add(new Musica(MediaPlayer.create(this,R.raw.lamentgoldenlight),R.drawable.dj,"asad","assa"));
-        playList.add(new Musica(MediaPlayer.create(this,R.raw.darktranquility) ,R.drawable.dj,"asad","assa"));
-        playList.add(new Musica(MediaPlayer.create(this,R.raw.alwaysbemyunicorn), R.drawable.dj,"asad","assa"));
-        playList.add(new Musica(R.drawable.dj,"asad","assa"));
-        playList.add(new Musica(R.drawable.dj,"asad","assa"));
-        return playList;
+        this.playList.add(new Musica(musica1,R.drawable.dj,"RAHOT GAY","CAMA"));
+        this.playList.add(new Musica(R.raw.darktranquility, R.drawable.dj,"PUTO","QUESO"));
+        this.playList.add(new Musica(R.raw.dreamingblue, R.drawable.dj,"CARAJO","SEXO"));
+        this.playList.add(new Musica(musica1,R.drawable.dj,"JAYSON","CAMA"));
+        this.playList.add(new Musica(R.raw.darktranquility, R.drawable.dj,"PUTO","QUESO"));
+        this.playList.add(new Musica(R.raw.dreamingblue, R.drawable.dj,"CARAJO","SEXO"));
+
+
+        // playList.add(new Musica(R.drawable.dj,"asad","assa"));
+        //playList.add(new Musica(R.drawable.dj,"asad","assa"));
+        //return playList;
     }
+  /*  public Intent serializableMetodo(Intent objetoPasar){
+        cargarMusica();
+        objetoPasar = new Intent(this,ListaMusica.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable("key_Paso_Objetos",playList);
+        objetoPasar.putExtra("BUNDLE",mBundle);
+        //startActivity(objetoPasar);
+        return objetoPasar;
+    }*/
+
     public void reproducir(){
-        playList = cargarMusica();
-        if (playList.get(posicionCancion).getMedia().isPlaying()){
+
+        if (reproductor.isPlaying()){
             pausa();
             play.setBackgroundResource(android.R.drawable.ic_media_play);
             album.setBackgroundResource(R.drawable.dj);
             titulo.setText("TU MUSICA");
 
         }else {
-            playList.get(0).getMedia().start();
+            reproductor.start();
             play.setBackgroundResource(android.R.drawable.ic_media_pause);
             album.setBackgroundResource(R.drawable.tenor);
             titulo.setText("Marica NENA");
@@ -96,53 +125,53 @@ public class Reprodcuccion extends AppCompatActivity {
         }
     }
     public void pausa(){
-        playList.get(posicionCancion).getMedia().pause();
+        reproductor.pause();
         play.setBackgroundResource(android.R.drawable.ic_media_pause);
     }
     public void siguiente(){
 
-        if (posicionCancion == 0 || playList.get(posicionCancion).getMedia().isPlaying() ){
+        if (posicionCancion == 0 || reproductor.isPlaying() ){
             pausa();
             posicionCancion = posicionCancion+1;
 
         }else {
-            if (posicionCancion == 0 || ! playList.get(posicionCancion).getMedia().isPlaying()){
+            if (posicionCancion == 0 || ! reproductor.isPlaying()){
                 pausa();
                 posicionCancion = posicionCancion+1;
 
             }else{
-                if (posicionCancion != 0 || ! playList.get(posicionCancion).getMedia().isPlaying()){
+                if (posicionCancion != 0 || ! reproductor.isPlaying()){
                     pausa();
 
                 }
             }
         }
 
-        playList.get(posicionCancion).getMedia().start();
+        reproductor.start();
 
     }
     public void anterior(){
-        playList = cargarMusica();
+        cargarMusica();
         Log.d("TamanoListadecancion",String.valueOf(playList.size()));
         if (posicionCancion == 0 ){
             Log.d("TamanoListadecancion",String.valueOf(playList.size()));
             pausa();
             posicionCancion = playList.size()-1;
-            playList.get(posicionCancion).getMedia().seekTo(0);
-            playList.get(posicionCancion).getMedia().start();
+            reproductor.seekTo(0);
+            reproductor.start();
         }else{
-            if (playList.get(posicionCancion).getMedia().isPlaying()){
+            if (reproductor.isPlaying()){
                 pausa();
-                playList.get(posicionCancion).getMedia().seekTo(0);
+                reproductor.seekTo(0);
                 play.setBackgroundResource(android.R.drawable.ic_media_pause);
                 posicionCancion = posicionCancion-1;
             }else {
                 posicionCancion = 0;
-                playList.get(posicionCancion).getMedia().seekTo(0);
+                reproductor.seekTo(0);
             }
         }
 
-        playList.get(posicionCancion).getMedia().start();
+        reproductor.start();
 
     }
 
