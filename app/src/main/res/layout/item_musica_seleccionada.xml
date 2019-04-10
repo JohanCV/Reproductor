@@ -21,14 +21,14 @@
 
         <ImageView
             android:id="@+id/itemImgViewAlbum"
-            android:layout_width="141dp"
-            android:layout_height="104dp"
+            android:layout_width="180dp"
+            android:layout_height="120dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/tenor" />
 
         <LinearLayout
             android:id="@+id/linearLayoutPlay"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -37,6 +37,9 @@
                 android:id="@+id/itemTextViewCancion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="60dp"
+                android:layout_weight="1"
                 android:text="Cancion"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -45,6 +48,8 @@
                 android:id="@+id/itemTextViewGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:text="Grupo"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -53,8 +58,8 @@
             android:id="@+id/itemButtonMeGusta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_launcher_foreground"
-            android:text="Me Gusta" />
+            android:background="@drawable/icons8msicametal48" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
