@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inicio"
+    android:background="@color/colorBlueLight">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageViewEscuchando"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/icons8escucharmica48"
+            android:layout_marginTop="200dp"/>
+
+        <TextView
+            android:id="@+id/textViewBienvenido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_marginTop="300dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -9,19 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyPlayList"></activity>
-        <activity android:name=".Reprodcuccion"
+        <activity android:name=".MyPlayList" />
+        <activity
+            android:name=".Reprodcuccion"
             android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".ListaMusica"
+            android:label="@string/title_activity_lista_musica"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Inicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ListaMusica"
-            android:label="@string/title_activity_lista_musica"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
