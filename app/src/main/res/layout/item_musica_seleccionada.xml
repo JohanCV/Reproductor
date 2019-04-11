@@ -24,7 +24,7 @@
             android:layout_width="180dp"
             android:layout_height="120dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/tenor" />
+            app:srcCompat="@drawable/fondo7" />
 
         <LinearLayout
             android:id="@+id/linearLayoutPlay"
@@ -60,6 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:layout_weight="1"
-            android:background="@drawable/megustapordefecto" />
+            android:background="@drawable/megusta" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

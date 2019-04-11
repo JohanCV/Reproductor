@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/icons8msicametal482" />
+        app:backgroundTint="@color/colorBlueLight"
+        app:srcCompat="@drawable/meencanta" />
 
     <RelativeLayout
         android:layout_width="match_parent"

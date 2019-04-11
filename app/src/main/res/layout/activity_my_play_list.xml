@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/ItemlinearLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="30dp"
         android:orientation="vertical"
@@ -22,7 +22,7 @@
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/tenor" />
+            app:srcCompat="@drawable/fondo3" />
     </LinearLayout>
 
     <RelativeLayout
