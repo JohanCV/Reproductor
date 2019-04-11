@@ -46,7 +46,7 @@ public class Adaptador extends BaseAdapter {
         final ImageView imgAlbum = (ImageView) view.findViewById(R.id.itemImgViewAlbum);
         TextView txtCancion = (TextView) view.findViewById(R.id.itemTextViewCancion);
         TextView txtGrupo = (TextView) view.findViewById(R.id.itemTextViewGrupo);
-        Button btnLike = (Button) view.findViewById(R.id.itemButtonMeGusta);
+        final Button btnLike = (Button) view.findViewById(R.id.itemButtonMeGusta);
         LinearLayout linearLayout = view.findViewById(R.id.linearLayoutPlay);
         imgAlbum.setImageResource(itemMusica.getFoto());
         txtCancion.setText(itemMusica.getCancion());
@@ -70,6 +70,7 @@ public class Adaptador extends BaseAdapter {
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnLike.setBackgroundResource(R.drawable.meencanta);
                 Toast.makeText(contexto, "Agregaste la cancion a Mi Lista", Toast.LENGTH_SHORT).show();
 
             }
