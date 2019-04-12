@@ -62,7 +62,15 @@ public class Reprodcuccion extends AppCompatActivity {
                     args.putSerializable("ARRAYLIST",(Serializable)playList);
                     intent.putExtra("BUNDLE",args);
                     name = args.toString();
-                    Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"play "+ name, Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }else{
+                    reproductor.pause();
+                    args.putSerializable("ARRAYLIST",(Serializable)playList);
+                    intent.putExtra("BUNDLE",args);
+                    name = args.toString();
+                    Toast.makeText(getApplicationContext(),"pause "+ name, Toast.LENGTH_SHORT).show();
+
                     startActivity(intent);
                 }
 
@@ -94,20 +102,19 @@ public class Reprodcuccion extends AppCompatActivity {
         reproductor = MediaPlayer.create(getApplicationContext(), playList.get(posicion).getMediaruta());
     }
     public void cargarMusica(){
-        this.playList.add(new Musica(R.raw.alanwalker135, R.drawable.fondo,"135","QUESO",0));
-        this.playList.add(new Musica(R.raw.alanwalkeralone, R.drawable.fondo2,"Alone","SAD",0));
-        this.playList.add(new Musica(R.raw.alwaysbemyunicorn, R.drawable.fondo3,"PUTO","QUESO",0));
-        this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"CARAJO","SEXO",0));
+        this.playList.add(new Musica(R.raw.alanwalker135, R.drawable.fondo,"135","Alan Walker",0));
+        this.playList.add(new Musica(R.raw.alanwalkeralone, R.drawable.fondo2,"Alone","Alan Walker",0));
+        this.playList.add(new Musica(R.raw.alwaysbemyunicorn, R.drawable.fondo3,"Always","Youtube",0));
+        this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"Sky","Youtube",0));
     }
 
+    public void pausa(){
+        reproductor.pause();
+        play.setBackgroundResource(android.R.drawable.ic_media_play);
+    }
     public void reproducir(){
-        //playList = (ArrayList<Musica>) getIntent().getSerializableExtra("objetoCancion");
         if (reproductor.isPlaying()){
             pausa();
-            play.setBackgroundResource(android.R.drawable.ic_media_play);
-            album.setBackgroundResource(playList.get(posicionCancion).getFoto());
-            titulo.setText(playList.get(posicionCancion).getCancion());
-
         }else {
             reproductor.start();
             playList.get(posicionCancion).setEstado(1);
@@ -117,54 +124,47 @@ public class Reprodcuccion extends AppCompatActivity {
 
         }
     }
-    public void pausa(){
-        reproductor.pause();
-        play.setBackgroundResource(android.R.drawable.ic_media_pause);
-    }
     public void siguiente(){
+
         if (reproductor.isPlaying()){
-            play.setBackgroundResource(android.R.drawable.ic_media_play);
-            album.setBackgroundResource(playList.get(posicionCancion).getFoto());
             pausa();
-            if (posicionCancion == 0  ){
-                posicionCancion = posicionCancion+1;
-                inicializaReproductor(posicionCancion);
-            }else {
-                if (posicionCancion == playList.size()){
-                    posicionCancion = 0;
-                    inicializaReproductor(posicionCancion);
-                }
-            }
-        }else {
-            album.setBackgroundResource(playList.get(posicionCancion).getFoto());
-            play.setBackgroundResource(android.R.drawable.ic_media_pause);
             posicionCancion = posicionCancion+1;
             inicializaReproductor(posicionCancion);
+            album.setBackgroundResource(playList.get(posicionCancion).getFoto());
+            titulo.setText(playList.get(posicionCancion).getCancion());
+            play.setBackgroundResource(android.R.drawable.ic_media_pause);
+            Toast.makeText(getApplicationContext(), playList.size() +" "+ posicionCancion,
+                    Toast.LENGTH_LONG).show();
+            if (playList.size() == posicionCancion +1){
+                posicionCancion = -1;
+            }
+        }else {
+            posicionCancion = posicionCancion+1;
+            inicializaReproductor(posicionCancion);
+            album.setBackgroundResource(playList.get(posicionCancion).getFoto());
+            play.setBackgroundResource(android.R.drawable.ic_media_pause);
         }
         reproductor.start();
 
     }
     public void anterior(){
-        if (posicionCancion == 0 ){
-            album.setBackgroundResource(playList.get(posicionCancion).getFoto());
-            Log.d("TamanoListadecancion",String.valueOf(playList.size()));
+        if (reproductor.isPlaying()){
             pausa();
-            posicionCancion = playList.size()-1;
-            reproductor.seekTo(0);
-            reproductor.start();
-        }else{
-            if (reproductor.isPlaying()){
-                album.setBackgroundResource(playList.get(posicionCancion).getFoto());
-                pausa();
-                reproductor.seekTo(0);
-                play.setBackgroundResource(android.R.drawable.ic_media_pause);
-                posicionCancion = posicionCancion-1;
-            }else {
-                posicionCancion = 0;
-                reproductor.seekTo(0);
-            }
-        }
+            if (posicionCancion ==0){
+                posicionCancion = playList.size()-1;
+                inicializaReproductor(posicionCancion);
 
+            }else {
+                posicionCancion = posicionCancion-1;
+                inicializaReproductor(posicionCancion);
+            }
+        }else{
+            posicionCancion = playList.size()-1;
+            inicializaReproductor(posicionCancion);
+        }
+        album.setBackgroundResource(playList.get(posicionCancion).getFoto());
+        titulo.setText(playList.get(posicionCancion).getCancion());
+        play.setBackgroundResource(android.R.drawable.ic_media_pause);
         reproductor.start();
 
     }
