@@ -56,11 +56,17 @@ public class Reprodcuccion extends AppCompatActivity {
                 Bundle args = new Bundle();
                 String  name = playList.toString();
                 Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
-                args.putSerializable("ARRAYLIST",(Serializable)playList);
-                intent.putExtra("BUNDLE",args);
-                name = args.toString();
-                Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+
+                if (reproductor.isPlaying()){
+                    reproductor.pause();
+                    args.putSerializable("ARRAYLIST",(Serializable)playList);
+                    intent.putExtra("BUNDLE",args);
+                    name = args.toString();
+                    Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+
+
 
             }
         });
@@ -88,10 +94,10 @@ public class Reprodcuccion extends AppCompatActivity {
         reproductor = MediaPlayer.create(getApplicationContext(), playList.get(posicion).getMediaruta());
     }
     public void cargarMusica(){
-        this.playList.add(new Musica(R.raw.darktranquility, R.drawable.fondo,"PUTO","QUESO"));
-        this.playList.add(new Musica(R.raw.dreamingblue, R.drawable.fondo2,"CARAJO","SAD"));
-        this.playList.add(new Musica(R.raw.alwaysbemyunicorn, R.drawable.fondo3,"PUTO","QUESO"));
-        this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"CARAJO","SEXO"));
+        this.playList.add(new Musica(R.raw.alanwalker135, R.drawable.fondo,"135","QUESO",0));
+        this.playList.add(new Musica(R.raw.alanwalkeralone, R.drawable.fondo2,"Alone","SAD",0));
+        this.playList.add(new Musica(R.raw.alwaysbemyunicorn, R.drawable.fondo3,"PUTO","QUESO",0));
+        this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"CARAJO","SEXO",0));
     }
 
     public void reproducir(){
@@ -103,8 +109,8 @@ public class Reprodcuccion extends AppCompatActivity {
             titulo.setText(playList.get(posicionCancion).getCancion());
 
         }else {
-
             reproductor.start();
+            playList.get(posicionCancion).setEstado(1);
             play.setBackgroundResource(android.R.drawable.ic_media_pause);
             album.setBackgroundResource(playList.get(posicionCancion).getFoto());
             titulo.setText(playList.get(posicionCancion).getCancion());
