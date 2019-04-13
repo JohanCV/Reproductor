@@ -5,6 +5,7 @@ package com.jcv.reproductor;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Delayed;
 
 import static com.jcv.reproductor.R.layout.activity_lista_musica;
 
@@ -27,6 +31,7 @@ public class ListaMusica extends AppCompatActivity {
     Intent intentRecibido;
     Bundle args;
     ArrayList<Musica> object;
+    CountDownTimer delay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,14 +78,26 @@ public class ListaMusica extends AppCompatActivity {
 
     protected void pasandoReproduccion(){
         for (int i = 0; i < object.size(); i++) {
-            play = MediaPlayer.create(getApplicationContext(),object.get(i).getMediaruta());
 
-            if (!play.isPlaying()){
+
+            if (object.get(i).getEstado() == 1){
+                play = MediaPlayer.create(getApplicationContext(),object.get(i).getMediaruta());
                 int estado = object.get(i).getEstado();
                 String nombre = object.get(i).getCancion();
                 Toast.makeText(this,String.valueOf(estado)+" "+ nombre,Toast.LENGTH_LONG).show();
                 //play.pause();
-                play.start();
+                delay  = new CountDownTimer(3000,10000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                       play.start();
+                    }
+                }.start();
+
                 break;
             }
         }

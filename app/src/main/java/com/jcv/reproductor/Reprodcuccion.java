@@ -64,6 +64,13 @@ public class Reprodcuccion extends AppCompatActivity {
                     name = args.toString();
                     Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
+                }else{
+                    //reproductor.pause();
+                    args.putSerializable("ARRAYLIST",(Serializable)playList);
+                    intent.putExtra("BUNDLE",args);
+                    name = args.toString();
+                    Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
                 }
 
 
