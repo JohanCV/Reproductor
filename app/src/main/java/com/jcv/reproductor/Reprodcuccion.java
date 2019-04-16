@@ -61,15 +61,15 @@ public class Reprodcuccion extends AppCompatActivity {
                     reproductor.pause();
                     args.putSerializable("ARRAYLIST",(Serializable)playList);
                     intent.putExtra("BUNDLE",args);
-                    name = args.toString();
-                    Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                    //name = args.toString();
+                    //Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }else{
                     //reproductor.pause();
                     args.putSerializable("ARRAYLIST",(Serializable)playList);
                     intent.putExtra("BUNDLE",args);
-                    name = args.toString();
-                    Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                    //name = args.toString();
+                    //Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
 
@@ -105,6 +105,11 @@ public class Reprodcuccion extends AppCompatActivity {
         this.playList.add(new Musica(R.raw.alanwalkeralone, R.drawable.fondo2,"Alone","SAD",0));
         this.playList.add(new Musica(R.raw.alwaysbemyunicorn, R.drawable.fondo3,"PUTO","QUESO",0));
         this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"CARAJO","SEXO",0));
+        this.playList.add(new Musica(R.raw.alanwalker135, R.drawable.fondo,"135","QUESO",0));
+        this.playList.add(new Musica(R.raw.alanwalkeralone, R.drawable.fondo2,"Alone","SAD",0));
+        this.playList.add(new Musica(R.raw.alwaysbemyunicorn, R.drawable.fondo3,"PUTO","QUESO",0));
+        this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"CARAJO","SEXO",0));
+
     }
 
     public void reproducir(){
@@ -174,6 +179,12 @@ public class Reprodcuccion extends AppCompatActivity {
 
         reproductor.start();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        reproductor.pause();
     }
 
 }
