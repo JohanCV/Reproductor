@@ -47,7 +47,7 @@ public class Adaptador extends BaseAdapter {
         TextView txtCancion = (TextView) view.findViewById(R.id.itemTextViewCancion);
         TextView txtGrupo = (TextView) view.findViewById(R.id.itemTextViewGrupo);
         final Button btnLike = (Button) view.findViewById(R.id.itemButtonMeGusta);
-        LinearLayout linearLayout = view.findViewById(R.id.linearLayoutPlay);
+        //LinearLayout linearLayout = view.findViewById(R.id.linearLayoutPlay);
         imgAlbum.setImageResource(itemMusica.getFoto());
         txtCancion.setText(itemMusica.getCancion());
         txtGrupo.setText(itemMusica.getGrupo());
