@@ -1,6 +1,7 @@
 package com.jcv.reproductor;
 
 import android.content.Context;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,13 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
 
 public class Adaptador extends BaseAdapter {
     private Context contexto;
@@ -41,40 +45,62 @@ public class Adaptador extends BaseAdapter {
     @Override
     public View getView(int posicion, View view, ViewGroup viewGroup) {
         final Musica itemMusica = (Musica) getItem(posicion);
+        final MediaPlayer play = MediaPlayer.create(contexto,itemMusica.getMediaruta());
+        final int mediaFileLength;
+        final int realTimeLength;
+
 
         view = LayoutInflater.from(contexto).inflate(R.layout.item_musica_seleccionada,null);
         final ImageView imgAlbum = (ImageView) view.findViewById(R.id.itemImgViewAlbum);
         TextView txtCancion = (TextView) view.findViewById(R.id.itemTextViewCancion);
         TextView txtGrupo = (TextView) view.findViewById(R.id.itemTextViewGrupo);
+        final TextView txtDuracion = (TextView) view.findViewById(R.id.itemTextViewDuracion);
         final Button btnLike = (Button) view.findViewById(R.id.itemButtonMeGusta);
-        //LinearLayout linearLayout = view.findViewById(R.id.linearLayoutPlay);
+        final Button btnPlay =  (Button) view.findViewById(R.id.itemButtonPlay);
+
+        final SeekBar seekBar = (SeekBar) view.findViewById(R.id.seekBar);
+        seekBar.setMax(play.getDuration());
+
         imgAlbum.setImageResource(itemMusica.getFoto());
         txtCancion.setText(itemMusica.getCancion());
         txtGrupo.setText(itemMusica.getGrupo());
-/*
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MediaPlayer play = MediaPlayer.create(contexto,itemMusica.getMediaruta());
+        mediaFileLength = play.getDuration();
+        realTimeLength = mediaFileLength;
 
-                if (play.isPlaying()){
-                    play.pause();
-
-                    play.start();
-                }else {
-                    play.start();
-                }
-                Toast.makeText(contexto, "Reproduciendo "+itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnLike.setBackgroundResource(R.drawable.meencanta);
-                Toast.makeText(contexto, "Agregaste la cancion a Mi Lista", Toast.LENGTH_SHORT).show();
+
+                if (itemMusica.isFavoritos()){
+                    btnLike.setBackgroundResource(R.drawable.megusta);
+                    itemMusica.setFavoritos(false);
+                    Toast.makeText(contexto, "Desagregaste la cancion Favoritos ", Toast.LENGTH_SHORT).show();
+                }else{
+                    btnLike.setBackgroundResource(R.drawable.meencanta);
+                    itemMusica.setFavoritos(true);
+                    Toast.makeText(contexto, "Agregaste la cancion a Favoritos", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (play.isPlaying()){
+                    play.pause();
+                    btnPlay.setBackgroundResource(android.R.drawable.ic_media_play);
+                    Toast.makeText(contexto, "Pausado "+itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
+                }else {
+                    play.start();
+
+                    btnPlay.setBackgroundResource(android.R.drawable.ic_media_pause);
+                    Toast.makeText(contexto, "Reproduciendo "+itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
         return view;
     }
 }

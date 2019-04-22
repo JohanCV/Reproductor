@@ -12,13 +12,15 @@ public class Musica implements Serializable {
     private String cancion;
     private String grupo;
     private int estado;
+    private boolean favoritos;
 
-    public Musica(int mediaruta, int foto, String cancion, String grupo, int estado) {
+    public Musica(int mediaruta, int foto, String cancion, String grupo, int estado,boolean favoritos) {
         this.mediaruta = mediaruta;
         this.foto = foto;
         this.cancion = cancion;
         this.grupo = grupo;
         this.estado = estado;
+        this.favoritos = favoritos;
     }
 
     public int getMediaruta() {
@@ -59,5 +61,13 @@ public class Musica implements Serializable {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public boolean isFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(boolean favoritos) {
+        this.favoritos = favoritos;
     }
 }
