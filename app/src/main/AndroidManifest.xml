@@ -12,9 +12,7 @@
         <activity android:name=".MyPlayList" />
         <activity
             android:name=".Reprodcuccion"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ListaMusica"
             android:label="@string/title_activity_lista_musica"
@@ -26,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".StreamingFb"></activity>
     </application>
 
 </manifest>

@@ -24,7 +24,7 @@ public class MyPlayList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_play_list);
         btnLike = findViewById(R.id.itemButtonMeGusta);
-        btnLike.setVisibility(View.INVISIBLE);
+        //btnLike.setVisibility(View.INVISIBLE);
         intent = getIntent();
         args = intent.getBundleExtra("BundleLike");
         mySong = (ArrayList<Musica>) args.getSerializable("ArrayListLike");

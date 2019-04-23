@@ -96,7 +96,7 @@ public class ListaMusica extends AppCompatActivity {
     protected void pasandoReproduccion(){
         for (int i = 0; i < object.size(); i++) {
 
-/*
+
             if (object.get(i).getEstado() == 1){
                 play = MediaPlayer.create(getApplicationContext(),object.get(i).getMediaruta());
                 int estado = object.get(i).getEstado();
@@ -116,19 +116,19 @@ public class ListaMusica extends AppCompatActivity {
                 }.start();
 
                 break;
-            }*/
+            }/*
             if (object != null){
                 play.stop();
                 play.release();
-            }
+            }*/
         }
 
     }
-
+    /*
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Toast.makeText(this,"Back",Toast.LENGTH_LONG).show();
         play.pause();
-    }
+    }*/
 }

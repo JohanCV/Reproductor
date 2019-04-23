@@ -22,6 +22,7 @@ public class Reprodcuccion extends AppCompatActivity {
     private Button play;
     private Button siguiente;
     private Button anterior;
+    private Button playfirebase;
     private TextView titulo;
     private ImageView album;
     private int posicionCancion = 0;
@@ -87,6 +88,7 @@ public class Reprodcuccion extends AppCompatActivity {
         play = findViewById(R.id.btnPlay);
         siguiente = findViewById(R.id.btnSiguiente);
         anterior = findViewById(R.id.btnAnterior);
+        playfirebase = findViewById(R.id.btnStreamingFB);
         titulo = findViewById(R.id.txtViewTitulo);
         album = findViewById(R.id.imageView);
     }
@@ -138,6 +140,14 @@ public class Reprodcuccion extends AppCompatActivity {
                 anterior();
             }
         });
+
+        playfirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentFb = new Intent(getApplicationContext(),StreamingFb.class);
+                startActivity(intentFb);
+            }
+        });
     }
 
     public void inicializaReproductor(int posicion){
@@ -154,7 +164,7 @@ public class Reprodcuccion extends AppCompatActivity {
         this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"7 CARAJO","SEXO",0,false));
 
     }
-
+    /*
     public void seekBarProgress(){
         updateSeekBarSong = new Thread(){
             @Override
@@ -175,7 +185,7 @@ public class Reprodcuccion extends AppCompatActivity {
         };
 
 
-    }
+    }*/
 
     public void reproducir(){
         if (!reproductor.isPlaying()){
