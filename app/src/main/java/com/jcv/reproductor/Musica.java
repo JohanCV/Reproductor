@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Musica implements Serializable {
     private int mediaruta;
     private int foto;
+    private String rutafirebase;
     private String cancion;
     private String grupo;
     private int estado;
@@ -17,6 +18,16 @@ public class Musica implements Serializable {
     public Musica(int mediaruta, int foto, String cancion, String grupo, int estado,boolean favoritos) {
         this.mediaruta = mediaruta;
         this.foto = foto;
+        this.cancion = cancion;
+        this.grupo = grupo;
+        this.estado = estado;
+        this.favoritos = favoritos;
+    }
+
+    public Musica(int mediaruta, int foto, String rutafirebase, String cancion, String grupo, int estado, boolean favoritos) {
+        this.mediaruta = mediaruta;
+        this.foto = foto;
+        this.rutafirebase = rutafirebase;
         this.cancion = cancion;
         this.grupo = grupo;
         this.estado = estado;
@@ -69,5 +80,13 @@ public class Musica implements Serializable {
 
     public void setFavoritos(boolean favoritos) {
         this.favoritos = favoritos;
+    }
+
+    public String getRutafirebase() {
+        return rutafirebase;
+    }
+
+    public void setRutafirebase(String rutafirebase) {
+        this.rutafirebase = rutafirebase;
     }
 }

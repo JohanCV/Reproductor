@@ -48,7 +48,7 @@ public class ListaMusica extends AppCompatActivity {
         object = (ArrayList<Musica>) args.getSerializable("ARRAYLIST");
 
         myListMusica = (ListView) findViewById(R.id.listaMusic);
-        myAdaptador = new Adaptador(this,object);
+        myAdaptador = new Adaptador(this,object,true,"");
         myListMusica.setAdapter(myAdaptador);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

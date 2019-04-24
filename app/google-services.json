@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "10091318253",
+    "firebase_url": "https://reproductor-258c8.firebaseio.com",
+    "project_id": "reproductor-258c8",
+    "storage_bucket": "reproductor-258c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10091318253:android:a818f3af0678aa03",
+        "android_client_info": {
+          "package_name": "com.jcv.reproductor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10091318253-lpsurbt4m2tpc2jguoveblmhmkgkid2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVCc9FIk6gfzbI4quLSeAPcmkh6enZLQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10091318253-lpsurbt4m2tpc2jguoveblmhmkgkid2g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

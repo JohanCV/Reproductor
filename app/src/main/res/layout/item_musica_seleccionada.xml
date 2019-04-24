@@ -99,6 +99,14 @@
                 android:layout_weight="1"
                 android:background="@android:drawable/ic_media_play"
                 android:focusable="false" />
+
+            <Button
+                android:id="@+id/itemButonCompartir"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/compartirredondo"
+                android:focusable="false"/>
         </LinearLayout>
 
     </LinearLayout>

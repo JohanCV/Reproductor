@@ -1,6 +1,7 @@
 package com.jcv.reproductor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.view.LayoutInflater;
@@ -21,10 +22,14 @@ import java.util.logging.Handler;
 public class Adaptador extends BaseAdapter {
     private Context contexto;
     private ArrayList<Musica> myListMusic;
+    private boolean esUsable;
+    private String urlSong;
 
-    public Adaptador(Context contexto, ArrayList<Musica> myListMusic) {
+    public Adaptador(Context contexto, ArrayList<Musica> myListMusic,boolean esUsable,String urlSong) {
         this.contexto = contexto;
         this.myListMusic = myListMusic;
+        this.esUsable = esUsable;
+        this.urlSong = urlSong;
     }
 
     @Override
@@ -57,6 +62,7 @@ public class Adaptador extends BaseAdapter {
         final TextView txtDuracion = (TextView) view.findViewById(R.id.itemTextViewDuracion);
         final Button btnLike = (Button) view.findViewById(R.id.itemButtonMeGusta);
         final Button btnPlay =  (Button) view.findViewById(R.id.itemButtonPlay);
+        final Button btnShare =  (Button) view.findViewById(R.id.itemButonCompartir);
 
         final SeekBar seekBar = (SeekBar) view.findViewById(R.id.seekBar);
         seekBar.setMax(play.getDuration());
@@ -67,40 +73,68 @@ public class Adaptador extends BaseAdapter {
         mediaFileLength = play.getDuration();
         realTimeLength = mediaFileLength;
 
-        btnLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if (esUsable){
+            btnLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                if (itemMusica.isFavoritos()){
-                    btnLike.setBackgroundResource(R.drawable.megusta);
-                    itemMusica.setFavoritos(false);
-                    Toast.makeText(contexto, "Desagregaste la cancion Favoritos ", Toast.LENGTH_SHORT).show();
-                }else{
-                    btnLike.setBackgroundResource(R.drawable.meencanta);
-                    itemMusica.setFavoritos(true);
-                    Toast.makeText(contexto, "Agregaste la cancion a Favoritos", Toast.LENGTH_SHORT).show();
+                    if (itemMusica.isFavoritos()){
+                        btnLike.setBackgroundResource(R.drawable.megusta);
+                        itemMusica.setFavoritos(false);
+                        Toast.makeText(contexto, "Desagregaste la cancion Favoritos ", Toast.LENGTH_SHORT).show();
+                    }else{
+                        btnLike.setBackgroundResource(R.drawable.meencanta);
+                        itemMusica.setFavoritos(true);
+                        Toast.makeText(contexto, "Agregaste la cancion a Favoritos", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+            });
+        }else {
+            btnLike.setVisibility(View.INVISIBLE);
+        }
+        if (esUsable) {
+            btnPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (play.isPlaying()) {
+                        play.pause();
+                        btnPlay.setBackgroundResource(android.R.drawable.ic_media_play);
+                        Toast.makeText(contexto, "Pausado " + itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        play.start();
 
-            }
-        });
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (play.isPlaying()){
-                    play.pause();
-                    btnPlay.setBackgroundResource(android.R.drawable.ic_media_play);
-                    Toast.makeText(contexto, "Pausado "+itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
-                }else {
-                    play.start();
+                        btnPlay.setBackgroundResource(android.R.drawable.ic_media_pause);
+                        Toast.makeText(contexto, "Reproduciendo " + itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
+                    }
 
-                    btnPlay.setBackgroundResource(android.R.drawable.ic_media_pause);
-                    Toast.makeText(contexto, "Reproduciendo "+itemMusica.getCancion(), Toast.LENGTH_SHORT).show();
                 }
-
-            }
-        });
-
+            });
+        }else {
+            btnPlay.setVisibility(View.INVISIBLE);
+        }
+        if (esUsable){
+            btnShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, getUrlSong());
+                    contexto.startActivity(Intent.createChooser(intent,"Share Song"));
+                }
+            });
+        }else {
+            btnShare.setVisibility(View.INVISIBLE);
+        }
 
         return view;
+    }
+
+    public String getUrlSong() {
+        return urlSong;
+    }
+
+    public void setUrlSong(String urlSong) {
+        this.urlSong = urlSong;
     }
 }

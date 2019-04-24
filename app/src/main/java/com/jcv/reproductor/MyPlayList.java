@@ -30,7 +30,7 @@ public class MyPlayList extends AppCompatActivity {
         mySong = (ArrayList<Musica>) args.getSerializable("ArrayListLike");
 
         myListMusica = (ListView) findViewById(R.id.mylistMusic);
-        myAdaptador = new Adaptador(this,mySong);
+        myAdaptador = new Adaptador(this,mySong,true,"");
         myListMusica.setAdapter(myAdaptador);
 
     }

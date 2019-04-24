@@ -24,6 +24,7 @@ public class Reprodcuccion extends AppCompatActivity {
     private Button anterior;
     private Button playfirebase;
     private TextView titulo;
+    private TextView duracion;
     private ImageView album;
     private int posicionCancion = 0;
 
@@ -90,6 +91,7 @@ public class Reprodcuccion extends AppCompatActivity {
         anterior = findViewById(R.id.btnAnterior);
         playfirebase = findViewById(R.id.btnStreamingFB);
         titulo = findViewById(R.id.txtViewTitulo);
+        duracion = findViewById(R.id.textViewDuracion);
         album = findViewById(R.id.imageView);
     }
     public void  eventos(){
@@ -163,6 +165,31 @@ public class Reprodcuccion extends AppCompatActivity {
         this.playList.add(new Musica(R.raw.alwaysbemyunicorn, R.drawable.fondo3,"6 PUTO","QUESO",0,false));
         this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"7 CARAJO","SEXO",0,false));
 
+    }
+    public String toTimer(long milliseconds){
+        String finalTimerString = "";
+        String secondsString;
+        // Convert total duration into time
+        int hours = (int)( milliseconds / (1000*60*60));
+        int minutes = (int)(milliseconds % (1000*60*60)) / (1000*60);
+        int seconds = (int) ((milliseconds % (1000*60*60)) % (1000*60) / 1000);
+        // Add hours if there
+        if(hours > 0){
+            finalTimerString = hours + ":";
+        }
+        // Prepending 0 to seconds if it is one digit
+        if(seconds < 10){
+            secondsString = "0" + seconds;
+        }else{
+            secondsString = "" + seconds;}
+        finalTimerString = finalTimerString + minutes + ":" + secondsString;
+        // return timer string
+        return finalTimerString;
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        duracion.setText(String.format("%s", toTimer(progress)));
     }
     /*
     public void seekBarProgress(){
