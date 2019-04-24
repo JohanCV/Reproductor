@@ -616,6 +616,7 @@ color colorAccent
 color colorBlack
 color colorBlueDark
 color colorBlueLight
+color colorGris
 color colorPrimary
 color colorPrimaryDark
 color colorWhite
@@ -1290,7 +1291,7 @@ id search_plate
 id search_src_text
 id search_voice_btn
 id seekBar
-id seekBar2
+id seekBarReproduccion
 id select_dialog_listview
 id selected
 id shortcut

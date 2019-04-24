@@ -144,12 +144,12 @@ activity#com.jcv.reproductor.MyPlayList
 ADDED from C:\Users\Gohan-PC\AndroidStudioProjects\Reproductor\app\src\main\AndroidManifest.xml:13:9-48
 	android:name
 		ADDED from C:\Users\Gohan-PC\AndroidStudioProjects\Reproductor\app\src\main\AndroidManifest.xml:13:19-45
-activity#com.jcv.reproductor.Reprodcuccion
+activity#com.jcv.reproductor.Reproduccion
 ADDED from C:\Users\Gohan-PC\AndroidStudioProjects\Reproductor\app\src\main\AndroidManifest.xml:14:9-16:61
 	android:screenOrientation
 		ADDED from C:\Users\Gohan-PC\AndroidStudioProjects\Reproductor\app\src\main\AndroidManifest.xml:16:13-49
 	android:name
-		ADDED from C:\Users\Gohan-PC\AndroidStudioProjects\Reproductor\app\src\main\AndroidManifest.xml:15:13-42
+		ADDED from C:\Users\Gohan-PC\AndroidStudioProjects\Reproductor\app\src\main\AndroidManifest.xml:15:13-41
 activity#com.jcv.reproductor.ListaMusica
 ADDED from C:\Users\Gohan-PC\AndroidStudioProjects\Reproductor\app\src\main\AndroidManifest.xml:17:9-20:59
 	android:label

@@ -75,7 +75,7 @@ public class ListaMusica extends AppCompatActivity {
         myListMusica.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int positionCancion, long id) {
-                Intent intent = new Intent(ListaMusica.this,Reprodcuccion.class);
+                Intent intent = new Intent(ListaMusica.this, Reproduccion.class);
                 Bundle argumentos = new Bundle();
                 argumentos.putInt("Argumentos",positionCancion);
                 intent.putExtra("Bundle",argumentos);

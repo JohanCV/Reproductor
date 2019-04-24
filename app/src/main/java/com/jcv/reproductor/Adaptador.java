@@ -109,8 +109,8 @@ public class Adaptador extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_TEXT, getUrlSong());
-                    contexto.startActivity(Intent.createChooser(intent,"Share Song"));
+                    intent.putExtra(Intent.EXTRA_TEXT, itemMusica.getRutafirebase());
+                    contexto.startActivity(Intent.createChooser(intent,"Compartiendo Musica"));
                 }
             });
         }else {

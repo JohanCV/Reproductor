@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo6"
-    tools:context=".Reprodcuccion">
+    tools:context=".Reproduccion">
 
     <FrameLayout
         android:id="@+id/frameLayout2"
@@ -62,7 +62,7 @@
             android:id="@+id/txtViewTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="8"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="30sp"
@@ -76,10 +76,10 @@
         <Button
             android:id="@+id/btnStreamingFB"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/soundstream"
-            android:text="Streaming" />
+            android:background="@drawable/soundcloud" />
 
     </LinearLayout>
 
@@ -162,18 +162,19 @@
                 android:layout_marginStart="161dp"
                 android:layout_marginTop="107dp"
                 android:layout_marginEnd="165dp"
-                android:text="00:00"
+                android:text="0:00"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <SeekBar
-                android:id="@+id/seekBar2"
+                android:id="@+id/seekBarReproduccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:progressBackgroundTint="@color/colorBlueLight" />
+                android:progressBackgroundTint="@color/colorPrimaryDark"
+                android:scrollbarSize="8dp" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -44,9 +44,10 @@
             android:id="@+id/listaMusic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorGris"
             android:divider="@color/colorBlack"
-            android:dividerHeight="2dp" />
+            android:dividerHeight="2dp"
+            android:listSelector="@color/colorPrimary"/>
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

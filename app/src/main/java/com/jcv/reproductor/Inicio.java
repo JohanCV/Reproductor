@@ -31,7 +31,7 @@ public class Inicio extends AppCompatActivity {
         bienvenida.startAnimation(animacionInicio);
     }
     protected void eventos(){
-        final Intent intent = new Intent(this,Reprodcuccion.class);
+        final Intent intent = new Intent(this, Reproduccion.class);
 
         Thread timerTransicion = new Thread() {
             public void run() {
