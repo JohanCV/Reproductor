@@ -1,5 +1,5 @@
 package com.jcv.reproductor;
-
+/*@Author: JCV **/
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -28,58 +28,17 @@ public class Reprodcuccion extends AppCompatActivity {
     private ImageView album;
     private int posicionCancion = 0;
 
-    ArrayList<Musica> playList = new ArrayList<>();
-    MediaPlayer reproductor;
-    SeekBar seekBarSong;
-    Thread updateSeekBarSong;
+    private ArrayList<Musica> playList = new ArrayList<>();
+    private MediaPlayer reproductor;
+    private SeekBar seekBarSong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reprodcuccion);
 
-
         cargarMusica();
         inicializaReproductor(posicionCancion);
-
-
-        //seekBarProgress();
-        //album.setBackgroundResource(playList.get(posicionCancion).getFoto());
-        //album.setBackgroundResource(R.drawable.gradient_background);
-       /* updateSeekBarSong = new Thread(){
-            @Override
-            public void run() {
-                int totalDuration = reproductor.getDuration();
-                int currentPosicion = 0;
-
-                while (currentPosicion < totalDuration){
-                    try {
-                        sleep(500);
-                        currentPosicion = reproductor.getCurrentPosition();
-                        seekBarSong.setProgress(currentPosicion);
-                    }catch (InterruptedException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        seekBarSong.setMax(reproductor.getDuration());
-        seekBarSong.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                reproductor.seekTo(seekBar.getProgress());
-            }
-        });*/
         inicializandoBotones();
         eventos();
     }
@@ -166,54 +125,6 @@ public class Reprodcuccion extends AppCompatActivity {
         this.playList.add(new Musica(R.raw.skyskating, R.drawable.fondo4,"7 CARAJO","SEXO",0,false));
 
     }
-    public String toTimer(long milliseconds){
-        String finalTimerString = "";
-        String secondsString;
-        // Convert total duration into time
-        int hours = (int)( milliseconds / (1000*60*60));
-        int minutes = (int)(milliseconds % (1000*60*60)) / (1000*60);
-        int seconds = (int) ((milliseconds % (1000*60*60)) % (1000*60) / 1000);
-        // Add hours if there
-        if(hours > 0){
-            finalTimerString = hours + ":";
-        }
-        // Prepending 0 to seconds if it is one digit
-        if(seconds < 10){
-            secondsString = "0" + seconds;
-        }else{
-            secondsString = "" + seconds;}
-        finalTimerString = finalTimerString + minutes + ":" + secondsString;
-        // return timer string
-        return finalTimerString;
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        duracion.setText(String.format("%s", toTimer(progress)));
-    }
-    /*
-    public void seekBarProgress(){
-        updateSeekBarSong = new Thread(){
-            @Override
-            public void run() {
-                int totalDuration = reproductor.getDuration();
-                int currentPosicion = 0;
-
-                while (currentPosicion < totalDuration){
-                    try {
-                        sleep(500);
-                        currentPosicion = reproductor.getCurrentPosition();
-                        seekBarSong.setProgress(currentPosicion);
-                    }catch (InterruptedException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-
-
-    }*/
-
     public void reproducir(){
         if (!reproductor.isPlaying()){
             playList.get(posicionCancion).setEstado(1);

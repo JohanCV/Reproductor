@@ -1,8 +1,7 @@
 package com.jcv.reproductor;
-
+/*@Author: JCV **/
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +9,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Handler;
 
 public class Adaptador extends BaseAdapter {
     private Context contexto;
@@ -51,9 +46,6 @@ public class Adaptador extends BaseAdapter {
     public View getView(int posicion, View view, ViewGroup viewGroup) {
         final Musica itemMusica = (Musica) getItem(posicion);
         final MediaPlayer play = MediaPlayer.create(contexto,itemMusica.getMediaruta());
-        final int mediaFileLength;
-        final int realTimeLength;
-
 
         view = LayoutInflater.from(contexto).inflate(R.layout.item_musica_seleccionada,null);
         final ImageView imgAlbum = (ImageView) view.findViewById(R.id.itemImgViewAlbum);
@@ -62,7 +54,7 @@ public class Adaptador extends BaseAdapter {
         final TextView txtDuracion = (TextView) view.findViewById(R.id.itemTextViewDuracion);
         final Button btnLike = (Button) view.findViewById(R.id.itemButtonMeGusta);
         final Button btnPlay =  (Button) view.findViewById(R.id.itemButtonPlay);
-        final Button btnShare =  (Button) view.findViewById(R.id.itemButonCompartir);
+        final Button btnShare =  (Button) view.findViewById(R.id.itemButtonCompartir);
 
         final SeekBar seekBar = (SeekBar) view.findViewById(R.id.seekBar);
         seekBar.setMax(play.getDuration());
@@ -70,8 +62,6 @@ public class Adaptador extends BaseAdapter {
         imgAlbum.setImageResource(itemMusica.getFoto());
         txtCancion.setText(itemMusica.getCancion());
         txtGrupo.setText(itemMusica.getGrupo());
-        mediaFileLength = play.getDuration();
-        realTimeLength = mediaFileLength;
 
         if (esUsable){
             btnLike.setOnClickListener(new View.OnClickListener() {

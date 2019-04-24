@@ -1,8 +1,6 @@
 package com.jcv.reproductor;
 
-/*@Author: JCV
-
-* */
+/*@Author: JCV **/
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,21 +23,25 @@ public class ListaMusica extends AppCompatActivity {
     private ListView myListMusica;
     private Adaptador myAdaptador;
     private MediaPlayer play;
-    private Button btnplay;
-    private int mediaFileLength;
-    private int realTimeLength;
-    Intent intentRecibido;
-    Bundle args;
-    ArrayList<Musica> object;
-    CountDownTimer delay;
+    private FloatingActionButton fab;
+    private Toolbar toolbar;
+    private Intent intentRecibido;
+    private Bundle args;
+    private ArrayList<Musica> object;
+    private CountDownTimer delay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_lista_musica);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
+        inicializadorListaMusica();
+        eventos();
+        pasandoReproduccion();
+    }
+    protected void inicializadorListaMusica(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         intentRecibido = getIntent();
         args = intentRecibido.getBundleExtra("BUNDLE");
@@ -51,7 +51,9 @@ public class ListaMusica extends AppCompatActivity {
         myAdaptador = new Adaptador(this,object,true,"");
         myListMusica.setAdapter(myAdaptador);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+    }
+    protected void eventos(){
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,11 +72,6 @@ public class ListaMusica extends AppCompatActivity {
                 startActivity(pasandoMyPlayList);
             }
         });
-        eventos();
-        pasandoReproduccion();
-    }
-
-    protected void eventos(){
         myListMusica.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int positionCancion, long id) {
@@ -88,15 +85,9 @@ public class ListaMusica extends AppCompatActivity {
             }
 
         });
-
     }
-
-
-
     protected void pasandoReproduccion(){
         for (int i = 0; i < object.size(); i++) {
-
-
             if (object.get(i).getEstado() == 1){
                 play = MediaPlayer.create(getApplicationContext(),object.get(i).getMediaruta());
                 int estado = object.get(i).getEstado();
@@ -108,7 +99,6 @@ public class ListaMusica extends AppCompatActivity {
                     public void onTick(long millisUntilFinished) {
 
                     }
-
                     @Override
                     public void onFinish() {
                        play.start();
@@ -116,19 +106,8 @@ public class ListaMusica extends AppCompatActivity {
                 }.start();
 
                 break;
-            }/*
-            if (object != null){
-                play.stop();
-                play.release();
-            }*/
+            }
         }
 
     }
-    /*
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Toast.makeText(this,"Back",Toast.LENGTH_LONG).show();
-        play.pause();
-    }*/
 }

@@ -1,9 +1,5 @@
 package com.jcv.reproductor;
-
-import android.media.MediaPlayer;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+/*@Author: JCV **/
 import java.io.Serializable;
 
 public class Musica implements Serializable {

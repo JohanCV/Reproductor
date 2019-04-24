@@ -1,5 +1,5 @@
 package com.jcv.reproductor;
-
+/*@Author: JCV **/
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -11,35 +11,41 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;;
+import com.google.firebase.storage.StorageReference;
 
 public class StreamingFb extends AppCompatActivity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
 
     private MediaPlayer mMediaplayer;
     private ListView myListFb;
     private Adaptador myAdaptadorFb;
-    private ArrayList<Musica> mySongFb = new ArrayList<Musica>();
+    private ArrayList<Musica> mySongFb = new ArrayList<>();
+    private int posicion = 0;
     private String song = "https://firebasestorage.googleapis.com/v0/b/reproductor-258c8.appspot.com/o/Paulo%20Londra%20-%20Adan%20y%20Eva%20(Official%20Video).mp3?alt=media&token=808461ea-2377-48e4-9c64-8580842db922";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_streaming_fb);
-
         cargarMusica();
+        inicializadorStreaming();
+    }
+
+    protected void inicializadorStreaming(){
         myListFb = findViewById(R.id.listSongFb);
         myAdaptadorFb = new Adaptador(getApplicationContext(),mySongFb,true,"");
         myListFb.setAdapter(myAdaptadorFb);
+
         mMediaplayer = new MediaPlayer();
+        eventos();
+        myAdaptadorFb.setUrlSong(mySongFb.get(posicion).getRutafirebase());
+        mMediaplayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+    }
+    protected void eventos(){
         myListFb.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,18 +63,12 @@ public class StreamingFb extends AppCompatActivity implements MediaPlayer.OnPrep
 
             }
         });
-        myAdaptadorFb.setUrlSong(mySongFb.get(0).getRutafirebase());
-        //mMediaplayer = new MediaPlayer();
-        mMediaplayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-
     }
-
-    private void cargarMusica(){
+    protected void cargarMusica(){
         this.mySongFb.add(new Musica(R.raw.alanwalker135,R.drawable.fondo,song,"0 Adan y EVA","Paulo Alondra",0,false));
     }
 
-    private void fetchAudioUrlFromFirebase(String song) {
+    protected void fetchAudioUrlFromFirebase(String song) {
         final FirebaseStorage storage = FirebaseStorage.getInstance();
         // Create a storage reference from our app
         StorageReference storageRef = storage.getReferenceFromUrl(song);
@@ -101,16 +101,12 @@ public class StreamingFb extends AppCompatActivity implements MediaPlayer.OnPrep
     @Override
     public void onPrepared(MediaPlayer mp) {
         mp.start();
-
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         mMediaplayer.pause();
     }
-
-
     @Override
     public void onCompletion(MediaPlayer mp) {
         mMediaplayer.pause();

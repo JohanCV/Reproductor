@@ -1,5 +1,5 @@
 package com.jcv.reproductor;
-
+/*@Author: JCV **/
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,25 +8,29 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static java.lang.Thread.sleep;
-
 public class Inicio extends AppCompatActivity {
 
-    ImageView logo;
-    TextView bienvenida;
+    private ImageView logo;
+    private TextView bienvenida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
+        inicializarInicio();
+        eventos();
+    }
+
+    protected void inicializarInicio(){
         logo = findViewById(R.id.imageViewEscuchando);
         bienvenida = findViewById(R.id.textViewBienvenido);
 
         Animation animacionInicio = AnimationUtils.loadAnimation(this,R.anim.transicion_inicio);
         logo.startAnimation(animacionInicio);
         bienvenida.startAnimation(animacionInicio);
-
+    }
+    protected void eventos(){
         final Intent intent = new Intent(this,Reprodcuccion.class);
 
         Thread timerTransicion = new Thread() {
